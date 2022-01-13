@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class BasketMovementScript : MonoBehaviour
+public class BasketMoveScript : MonoBehaviour
 {
     public float speed;
 
@@ -13,21 +13,21 @@ public class BasketMovementScript : MonoBehaviour
     int score = 0;
 
     public GameObject TimeText;
-    float time = 10f;
+    float time = 20f;
     int timeCount;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
 
-      float horizontalInput = Input.GetAxis("Horizontal");
+        float horizontalInput = Input.GetAxis("Horizontal");
 
-      transform.position = transform.position + new Vector3(horizontalInput * speed * Time.deltaTime, 0, 0);
+        transform.position = transform.position + new Vector3(horizontalInput * speed * Time.deltaTime, 0, 0);
 
         time -= Time.deltaTime;
         timeCount = Mathf.RoundToInt(time);
@@ -35,7 +35,7 @@ public class BasketMovementScript : MonoBehaviour
         if (time <= 0)
         {
             TimeText.GetComponent<Text>().text = "0";
-            SceneManager.LoadScene("GamePlay_Level 2");
+            SceneManager.LoadScene("GameWinScene");
         }
 
 
@@ -43,7 +43,7 @@ public class BasketMovementScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Healthy"))
+        if (collision.gameObject.CompareTag("Healthy"))
         {
             score += 10;
             scoreText.GetComponent<Text>().text = "Score: " + score;
@@ -55,9 +55,4 @@ public class BasketMovementScript : MonoBehaviour
             SceneManager.LoadScene("GameLoseScene");
         }
     }
-
-
-
-
-
 }
