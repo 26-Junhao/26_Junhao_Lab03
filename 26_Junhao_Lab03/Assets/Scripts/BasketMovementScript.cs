@@ -25,8 +25,20 @@ public class BasketMovementScript : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Healthy"))
+        {
+            Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Unhealthy"))
+        {
+            Destroy(collision.gameObject);
+        }
+    }
 
 
-    
+
+
 
 }
